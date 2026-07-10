@@ -9,61 +9,80 @@
 <style>
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Segoe UI",Arial,sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
 }
 
 body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:
-linear-gradient(135deg,#ffafbd,#ffc3a0,#c2e9fb);
-background-size:300% 300%;
-animation:bg 12s infinite alternate;
-overflow:auto;
-padding:20px;
+    min-height:100vh;
+    overflow-x:hidden;
+    background:
+    radial-gradient(circle at top,#ff8fab,#3a1c71,#12001f);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
 }
 
 
-@keyframes bg{
+/* фоновые частицы */
+
+.circle{
+    position:fixed;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+    animation:move 12s infinite linear;
+}
+
+@keyframes move{
+
 from{
-background-position:left;
+    transform:translateY(110vh) scale(.5);
 }
+
 to{
-background-position:right;
+    transform:translateY(-20vh) scale(1.5);
 }
+
 }
 
 
-.card{
 
-max-width:850px;
-padding:55px 45px;
+.container{
 
-background:rgba(255,255,255,.35);
+max-width:900px;
+width:100%;
+
+background:
+rgba(255,255,255,.12);
+
 backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.25);
 
 border-radius:35px;
 
+padding:50px;
+
 box-shadow:
-0 30px 80px rgba(0,0,0,.25);
+0 30px 80px rgba(0,0,0,.5);
 
-text-align:center;
+animation:show 1.5s;
 
-animation:appear 1.5s;
+position:relative;
+z-index:2;
 
 }
 
 
-@keyframes appear{
+@keyframes show{
 
 from{
 opacity:0;
-transform:translateY(50px);
+transform:translateY(80px);
 }
 
 to{
@@ -75,29 +94,48 @@ transform:none;
 
 
 
-h1{
+.title{
+
+text-align:center;
 
 font-size:55px;
 
-color:#fff;
+font-weight:800;
 
-text-shadow:
-0 0 20px #ff4f81;
+background:linear-gradient(90deg,#ffd166,#ff8fab,#fff);
 
-margin-bottom:15px;
+-webkit-background-clip:text;
+
+color:transparent;
+
+animation:title 3s infinite alternate;
 
 }
 
 
-.name{
+@keyframes title{
 
-font-size:32px;
+from{
+filter:drop-shadow(0 0 5px pink);
+}
 
-color:#fff0b3;
+to{
+filter:drop-shadow(0 0 25px white);
+}
 
-font-weight:bold;
+}
 
-margin-bottom:30px;
+
+
+.subtitle{
+
+text-align:center;
+
+font-size:30px;
+
+margin:20px 0 40px;
+
+color:#ffe7a3;
 
 }
 
@@ -105,14 +143,16 @@ margin-bottom:30px;
 
 .heart{
 
-font-size:60px;
+text-align:center;
 
-animation:pulse 1.5s infinite;
+font-size:70px;
+
+animation:heart 1.5s infinite;
 
 }
 
 
-@keyframes pulse{
+@keyframes heart{
 
 50%{
 transform:scale(1.2);
@@ -128,49 +168,134 @@ font-size:21px;
 
 line-height:1.9;
 
-color:white;
+color:#fff;
 
-text-shadow:0 2px 5px rgba(0,0,0,.2);
+text-align:center;
+
+text-shadow:
+0 2px 10px rgba(0,0,0,.5);
 
 }
 
 
 
-.box{
+.block{
 
 margin-top:35px;
 
-padding:25px;
-
-background:rgba(255,255,255,.25);
+padding:30px;
 
 border-radius:25px;
 
-border:1px solid rgba(255,255,255,.5);
+background:
+rgba(0,0,0,.25);
+
+border:
+1px solid rgba(255,255,255,.2);
+
+animation:slide 1s;
 
 }
 
 
 
-.box h2{
+@keyframes slide{
 
-color:#fff5c3;
+from{
+opacity:0;
+transform:translateX(-50px);
+}
 
-margin-bottom:15px;
+to{
+opacity:1;
+transform:none;
+}
+
+}
+
+
+
+.block h2{
+
+text-align:center;
+
+color:#ffd166;
 
 font-size:30px;
 
+margin-bottom:20px;
+
 }
 
 
 
-.wish{
+.wishes{
 
 font-size:20px;
 
-line-height:1.8;
+line-height:2;
 
-color:white;
+}
+
+
+
+.wishes span{
+
+color:#ffd166;
+
+}
+
+
+
+.baby{
+
+margin-top:35px;
+
+padding:35px;
+
+border-radius:30px;
+
+background:
+linear-gradient(135deg,
+rgba(255,182,193,.35),
+rgba(255,255,255,.15));
+
+text-align:center;
+
+animation:pulseBox 3s infinite;
+
+}
+
+
+
+@keyframes pulseBox{
+
+50%{
+box-shadow:
+0 0 40px rgba(255,182,193,.5);
+}
+
+}
+
+
+
+.baby h2{
+
+font-size:32px;
+
+color:#ffb6c1;
+
+margin-bottom:20px;
+
+}
+
+
+
+.baby p{
+
+font-size:21px;
+
+line-height:1.8;
 
 }
 
@@ -178,65 +303,23 @@ color:white;
 
 footer{
 
+text-align:center;
+
 margin-top:35px;
-
-color:white;
-
-font-size:18px;
-
-opacity:.9;
-
-}
-
-
-.sparkle{
-
-position:fixed;
 
 font-size:20px;
 
-color:white;
-
-animation:float 5s infinite linear;
+color:#ffd166;
 
 }
-
-
-@keyframes float{
-
-from{
-
-transform:translateY(100vh);
-
-opacity:0;
-
-}
-
-20%{
-opacity:1;
-}
-
-to{
-
-transform:translateY(-20vh);
-
-opacity:0;
-
-}
-
-}
-
-
 
 </style>
-
 </head>
-
 
 <body>
 
 
-<div class="card">
+<div class="container">
 
 
 <div class="heart">
@@ -244,88 +327,172 @@ opacity:0;
 </div>
 
 
-<h1>
+<h1 class="title">
 С Днём Рождения!
 </h1>
 
 
-<div class="name">
+<div class="subtitle">
 Дорогая Висола, тебе 21 год 🎂
 </div>
 
 
-
 <div class="text">
 
-Сегодня особенный день — день, когда появился такой прекрасный человек, как ты.
+Сегодня особенный день — день рождения замечательного человека.
 
 <br><br>
 
-Пусть твоя жизнь будет наполнена счастьем, любовью, спокойствием и красивыми моментами.
+Пусть этот новый год твоей жизни принесёт тебе много счастья,
+радости, любви и самых красивых воспоминаний.
 
 <br><br>
 
-Желаю тебе всегда оставаться такой же доброй, улыбчивой и замечательной.
-
-<br><br>
-
-Пусть каждый новый день приносит тебе радость,
-приятные сюрпризы и новые возможности.
+Ты стала взрослой, мудрой и сейчас открываешь новую прекрасную страницу своей жизни.
 
 </div>
 
 
-
-<div class="box">
+<div class="block">
 
 <h2>
-✨ Мои пожелания тебе ✨
+✨ Большие пожелания ✨
 </h2>
 
 
-<div class="wish">
+<div class="wishes">
 
-🌸 Желаю крепкого здоровья и огромного внутреннего счастья.
+<span>❤️</span> Желаю тебе крепкого здоровья, душевного спокойствия и огромного счастья.
 
-<br><br>
+<br>
 
-💖 Пусть в твоём сердце всегда будет любовь и гармония.
+<span>🌸</span> Пусть каждый день начинается с улыбки и заканчивается приятными моментами.
 
-<br><br>
+<br>
 
-🏡 Пусть дома всегда царят тепло, уют, понимание и радость.
+<span>💎</span> Пусть все твои мечты постепенно становятся реальностью.
 
-<br><br>
+<br>
 
-💍 Пусть ваша семья с Воиром становится только крепче,
-а каждый день приносит новые счастливые воспоминания.
+<span>🏡</span> Пусть в доме всегда будут тепло, уют, любовь и взаимопонимание.
 
-<br><br>
+<br>
 
-👶 Пусть впереди вас ждут самые добрые и светлые моменты.
-
-<br><br>
-
-🎓 Желаю успехов в учёбе, уверенности в себе и достижения всех целей.
-
-<br><br>
-
-⭐ Пусть все твои мечты постепенно становятся реальностью.
-
-<br><br>
-
-🌷 Пусть судьба дарит тебе много счастливых дней,
-добрых людей рядом и бесконечные причины улыбаться.
+<span>💍</span> Пусть рядом всегда будет Воир, который поддерживает тебя и делает тебя счастливее.
 
 </div>
 
 </div>
 
+<div class="baby">
+
+<h2>
+👶 Самое прекрасное ожидание 👶
+</h2>
+
+<p>
+
+Сейчас в твоей жизни происходит настоящее чудо — 
+ты готовишься стать мамой. ❤️
+
+<br><br>
+
+Пусть малыш, который растёт под твоим сердцем,
+будет крепким, здоровым и принесёт вашей семье
+ещё больше счастья и любви. ✨
+
+<br><br>
+
+Желаю тебе лёгкой беременности, спокойных дней,
+много улыбок и самых нежных моментов в ожидании встречи
+с вашим маленьким чудом. 🍼
+
+<br><br>
+
+Пусть этот новый этап подарит тебе невероятные эмоции,
+а каждый день будет наполнен заботой, теплом и любовью.
+
+</p>
+
+</div>
+
+
+
+<div class="block">
+
+<h2>
+🌷 Ещё немного пожеланий 🌷
+</h2>
+
+
+<div class="wishes">
+
+<span>⭐</span>
+Пусть у тебя всегда будут силы идти к своим целям.
+
+<br><br>
+
+<span>🌹</span>
+Пусть каждый год делает тебя только счастливее.
+
+<br><br>
+
+<span>✨</span>
+Пусть в жизни будет больше радостных событий,
+приятных встреч и добрых людей.
+
+<br><br>
+
+<span>💖</span>
+Пусть твоя семья будет самой крепкой,
+а дом всегда будет наполнен смехом и любовью.
+
+<br><br>
+
+<span>🎓</span>
+Желаю успехов в учёбе, новых достижений
+и уверенности в своих силах.
+
+</div>
+
+</div>
+
+
+
+<div class="block">
+
+<h2>
+🎁 От всей семьи ❤️
+</h2>
+
+<div class="text">
+
+Висола, ты очень дорогой для нас человек.
+
+<br><br>
+
+Мы желаем тебе прожить эту жизнь красиво,
+счастливо и с огромным количеством моментов,
+которые хочется запомнить навсегда.
+
+<br><br>
+
+Пусть впереди тебя ждут только хорошие новости,
+большая любовь, семейное счастье и исполнение желаний.
+
+<br><br>
+
+Оставайся такой же доброй, красивой душой
+и замечательной сестрой.
+
+</div>
+
+</div>
 
 
 <footer>
 
-С любовью ❤️ от твоего брата
+❤️ С любовью от твоего брата ❤️
 
 </footer>
 
@@ -333,26 +500,45 @@ opacity:0;
 </div>
 
 
-
 <script>
 
-for(let i=0;i<25;i++){
 
-let s=document.createElement("div");
+// создаём красивые летающие частицы
 
-s.className="sparkle";
+for(let i=0;i<35;i++){
 
-s.innerHTML="✨";
+let c=document.createElement("div");
 
-s.style.left=Math.random()*100+"vw";
+c.className="circle";
 
-s.style.animationDelay=Math.random()*5+"s";
+let size=Math.random()*60+20;
 
-s.style.fontSize=15+Math.random()*25+"px";
+c.style.width=size+"px";
+c.style.height=size+"px";
 
-document.body.appendChild(s);
+c.style.left=Math.random()*100+"vw";
+
+c.style.animationDuration=
+(8+Math.random()*10)+"s";
+
+c.style.animationDelay=
+Math.random()*5+"s";
+
+document.body.appendChild(c);
 
 }
+
+
+// плавное появление блоков
+
+let blocks=document.querySelectorAll(".block,.baby");
+
+blocks.forEach((b,i)=>{
+
+b.style.animationDelay=(i*.3)+"s";
+
+});
+
 
 </script>
 
