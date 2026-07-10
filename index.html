@@ -2,280 +2,117 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>С Днем Рождения, Висола!</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1f1c2c, #928DAB);
-            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comfortaa', cursive;
+            background: radial-gradient(circle at center, #2d1b3e, #1a0b26);
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow-x: hidden;
+            min-height: 100vh;
             color: #fff;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 40px 30px;
-            max-width: 500px;
-            width: 90%;
             text-align: center;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-            position: relative;
-            z-index: 10;
-            animation: fadeIn 1.5s ease-out;
+            overflow: hidden;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .container {
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: pulseGlow 3s infinite alternate;
-        }
+        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #ff9efc; }
+        .wish-text { font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; color: #e0e0e0; }
 
-        @keyframes pulseGlow {
-            0% { filter: drop-shadow(0 0 2px rgba(255, 154, 158, 0.5)); }
-            100% { filter: drop-shadow(0 0 15px rgba(255, 154, 158, 0.9)); }
+        /* Свеча */
+        .candle-box { margin: 40px auto; position: relative; width: 60px; height: 120px; cursor: pointer; }
+        .wick { width: 4px; height: 15px; background: #333; margin: 0 auto; }
+        .flame { 
+            width: 20px; height: 35px; background: orange; border-radius: 50% 50% 20% 20%;
+            margin: -5px auto 0; box-shadow: 0 0 20px #ffcc00; animation: burn 0.5s infinite;
         }
+        @keyframes burn { 0%, 100% {transform: scale(1);} 50% {transform: scale(1.1);} }
+        .hidden { display: none; }
 
-        .subtitle {
-            font-size: 1.1rem;
-            color: #ffd1dc;
-            margin-bottom: 25px;
-            font-weight: 500;
+        button {
+            padding: 15px 30px; font-size: 1rem; border: none; border-radius: 50px;
+            background: linear-gradient(45deg, #ff9efc, #8559da); color: white;
+            cursor: pointer; transition: transform 0.3s;
         }
+        button:hover { transform: scale(1.05); }
 
-        /* Торт и свеча (чистый CSS) */
-        .cake-container {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0;
-            cursor: pointer;
-        }
-
-        .cake {
-            position: relative;
-            width: 140px;
-            height: 110px;
-        }
-
-        .layer {
-            position: absolute;
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .layer-bottom {
-            bottom: 0;
-            height: 55px;
-            background: linear-gradient(to right, #e056fd, #f0932b);
-            box-shadow: inset 0 5px rgba(255,255,255,0.3);
-        }
-
-        .layer-top {
-            bottom: 50px;
-            width: 80%;
-            left: 10%;
-            height: 45px;
-            background: linear-gradient(to right, #ff6b6b, #ff7675);
-            border-radius: 10px 10px 5px 5px;
-        }
-
-        .candle {
-            position: absolute;
-            bottom: 92px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 35px;
-            background: repeating-linear-gradient(45deg, #fff, #fff 5px, #74b9ff 5px, #74b9ff 10px);
-            border-radius: 3px;
-        }
-
-        .flame {
-            position: absolute;
-            top: -22px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 22px;
-            background: linear-gradient(to top, #ff9f43, #fffa65);
-            border-radius: 50% 50% 20% 20%;
-            animation: flicker 0.6s infinite alternate ease-in-out;
-            box-shadow: 0 0 15px #fffa65, 0 0 25px #ff9f43;
-            transform-origin: bottom center;
-        }
-
-        .flame.extinguished {
-            display: none;
-        }
-
-        @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1) rotate(-3deg); opacity: 0.9; }
-            100% { transform: translateX(-50%) scale(1.15) rotate(3deg); opacity: 1; }
-        }
-
-        .message {
-            font-size: 0.98rem;
-            line-height: 1.6;
-            color: #f5f6fa;
-            margin-bottom: 25px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 15px;
-            border-radius: 12px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #ff7675, #fab1a0);
-            border: none;
-            padding: 12px 25px;
-            font-size: 1rem;
-            color: #fff;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(255, 118, 117, 0.4);
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(255, 118, 117, 0.6);
-        }
-
-        .hint {
-            font-size: 0.8rem;
-            margin-top: 10px;
-            color: #dfe6e9;
-            opacity: 0.8;
-        }
-
-        /* Конфетти и фон */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
+        canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
     </style>
 </head>
 <body>
 
-    <canvas id="confettiCanvas"></canvas>
+    <canvas id="canvas"></canvas>
 
-    <div class="card">
-        <h1>С Днём Рождения, Висола!</h1>
-        <div class="subtitle">Тебе сегодня 21 год ✨</div>
+    <div class="container" id="content">
+        <h1>Висола, с 21-летием!</h1>
+        <p class="wish-text" id="main-text">
+            С днем рождения, дорогая! 21 год — это начало самого прекрасного времени.<br><br>
+            Пусть твоя учеба в <b>TEAM University</b> дается легко и открывает перед тобой двери в будущее. Пусть ваша семья с <b>Воиром</b> крепнет с каждым днем, а дом будет наполнен уютом.<br><br>
+            Самое главное пожелание — здоровья тебе и вашему маленькому чуду. Пусть всё задуманное сбывается, а каждый день приносит только радостные новости!
+        </p>
 
-        <div class="cake-container" onclick="blowCandle()" title="Нажми на торт, чтобы задуть свечу!">
-            <div class="cake">
-                <div class="layer layer-bottom"></div>
-                <div class="layer layer-top"></div>
-                <div class="candle">
-                    <div class="flame" id="candleFlame"></div>
-                </div>
-            </div>
+        <div class="candle-box" onclick="blow()">
+            <div class="wick"></div>
+            <div class="flame" id="flame"></div>
         </div>
-
-        <div class="message" id="congratsText">
-            Дорогая Висола! Поздравляю тебя с этим прекрасным днем — твоим 21-летием! 
-            Ты вступаешь в удивительный этап: рядом любящий муж Воир, впереди блестящая учеба в 
-            <b>TEAM University</b>, и самое главное — под сердцем растет новое маленькое чудо. 
-            Желаю тебе крепкого здоровья, гармонии, бесконечного тепла и легкости!
-        </div>
-
-        <button class="btn" onclick="blowCandle()">Задуть свечу и загадать желание</button>
-        <div class="hint">(Нажми на торт или кнопку)</div>
+        <p id="hint">Нажми на свечу, чтобы задуть её</p>
     </div>
 
     <script>
-        let isBlown = false;
-
-        function blowCandle() {
-            const flame = document.getElementById('candleFlame');
-            const textBlock = document.getElementById('congratsText');
+        function blow() {
+            const flame = document.getElementById('flame');
+            const text = document.getElementById('main-text');
+            const hint = document.getElementById('hint');
             
-            if (!isBlown) {
-                flame.classList.add('extinguished');
-                isBlown = true;
-                
-                textBlock.innerHTML = "<b>Ура! Желание загадано!</b><br>Пусть всё, о чём ты мечтаешь, обязательно сбудется самым волшебным образом. Счастья вашей прекрасной семье — тебе, Воиру и вашему малышу!";
-                
-                // Запуск салюта из конфетти
-                launchConfetti();
-            }
+            flame.classList.add('hidden');
+            hint.innerText = "Желание загадано! Счастья вам!";
+            text.innerHTML = "<b>Висола, ты удивительная!</b><br>Спасибо, что делаешь этот мир светлее. Пусть этот год принесет тебе много сил, здоровья и бесконечной любви. Мы все очень тобой гордимся — и ты, и Воир, и ваш малыш — вы создаете прекрасную историю. Сияй, улыбайся и будь самой счастливой!";
+            
+            // Запуск салюта
+            createFireworks();
         }
 
-        // Красивый скрипт для конфетти на Canvas без картинок
-        const canvas = document.getElementById('confettiCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
+        function createFireworks() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function launchConfetti() {
-            for (let i = 0; i < 150; i++) {
+            
+            let particles = [];
+            for(let i=0; i<200; i++) {
                 particles.push({
-                    x: window.innerWidth / 2,
-                    y: window.innerHeight / 2 + 50,
-                    vx: (Math.random() - 0.5) * 12,
-                    vy: (Math.random() - 0.7) * 12 - 4,
-                    size: Math.random() * 8 + 4,
-                    color: `hsl(${Math.random() * 360}, 100%, 75%)`,
-                    life: 150
+                    x: canvas.width/2, y: canvas.height/2,
+                    vx: (Math.random()-0.5)*15, vy: (Math.random()-0.5)*15,
+                    color: `hsl(${Math.random()*360}, 70%, 60%)`, alpha: 1
                 });
             }
-            animateConfetti();
-        }
 
-        function animateConfetti() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, index) => {
-                p.x += p.vx;
-                p.y += p.vy;
-                p.vy += 0.2; // гравитация
-                p.life--;
-
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fill();
-
-                if (p.life <= 0) {
-                    particles.splice(index, 1);
-                }
-            });
-
-            if (particles.length > 0) {
-                requestAnimationFrame(animateConfetti);
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    ctx.fillStyle = p.color;
+                    ctx.globalAlpha = p.alpha;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill();
+                    p.x += p.vx; p.y += p.vy; p.alpha -= 0.01;
+                });
+                if(particles[0].alpha > 0) requestAnimationFrame(render);
             }
+            render();
         }
     </script>
 </body>
