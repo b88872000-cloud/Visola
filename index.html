@@ -168,12 +168,34 @@ font-size:21px;
 
 line-height:1.9;
 
-color:#fff;
-
 text-align:center;
 
+color:#ffd166;
+
 text-shadow:
-0 2px 10px rgba(0,0,0,.5);
+0 0 5px #ffb703,
+0 0 15px #ff006e,
+0 0 30px #ff006e;
+
+animation:textGlow 3s infinite alternate;
+
+}
+
+
+@keyframes textGlow{
+
+from{
+text-shadow:
+0 0 5px #ffd166,
+0 0 15px #ff8c00;
+}
+
+to{
+text-shadow:
+0 0 10px #ff006e,
+0 0 30px #ff006e,
+0 0 50px #ffd166;
+}
 
 }
 
@@ -217,13 +239,11 @@ transform:none;
 
 .block h2{
 
-text-align:center;
+color:#ffdd57;
 
-color:#ffd166;
-
-font-size:30px;
-
-margin-bottom:20px;
+text-shadow:
+0 0 10px #ffae00,
+0 0 25px #ff006e;
 
 }
 
@@ -235,8 +255,28 @@ font-size:20px;
 
 line-height:2;
 
+color:#ffdf91;
+
+text-shadow:
+0 0 8px #ff8c00,
+0 0 20px #ff006e;
+
+animation:wishGlow 4s infinite alternate;
+
 }
 
+
+@keyframes wishGlow{
+
+from{
+filter:drop-shadow(0 0 5px #ffd166);
+}
+
+to{
+filter:drop-shadow(0 0 20px #ff006e);
+}
+
+}
 
 
 .wishes span{
