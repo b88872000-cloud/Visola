@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎉 С Днём Рождения, Висола!</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+background:linear-gradient(-45deg,#ff5f9e,#7d5fff,#4facfe,#43e97b);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+@keyframes bg{
+0%{background-position:0 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0 50%;}
+}
+
+.card{
+width:90%;
+max-width:900px;
+padding:45px;
+border-radius:30px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.3);
+box-shadow:0 25px 60px rgba(0,0,0,.3);
+text-align:center;
+color:white;
+animation:appear 1.3s;
+z-index:10;
+}
+
+@keyframes appear{
+from{
+opacity:0;
+transform:translateY(60px) scale(.9);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+h1{
+font-size:55px;
+margin-bottom:20px;
+animation:glow 2s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px white;}
+to{text-shadow:0 0 30px gold,0 0 60px hotpink;}
+}
+
+.age{
+font-size:28px;
+margin-bottom:25px;
+color:#fff6c7;
+}
+
+.message{
+font-size:22px;
+line-height:1.8;
+margin-bottom:30px;
+}
+
+button{
+padding:18px 45px;
+font-size:20px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+background:white;
+color:#ff4081;
+font-weight:bold;
+transition:.4s;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+button:hover{
+transform:scale(1.08);
+background:#fff4b2;
+}
+
+#extra{
+margin-top:35px;
+display:none;
+font-size:22px;
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(30px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.balloon{
+position:absolute;
+bottom:-150px;
+width:60px;
+height:75px;
+border-radius:50%;
+animation:fly linear infinite;
+}
+
+.balloon:before{
+content:"";
+position:absolute;
+left:29px;
+top:72px;
+width:2px;
+height:70px;
+background:white;
+}
+
+@keyframes fly{
+from{
+transform:translateY(0);
+}
+to{
+transform:translateY(-130vh);
+}
+}
+
+.star{
+position:absolute;
+color:white;
+animation:twinkle 2s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{
+opacity:.2;
+transform:scale(.8);
+}
+50%{
+opacity:1;
+transform:scale(1.4);
+}
+}
+
+footer{
+margin-top:35px;
+font-size:17px;
+opacity:.9;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+<h1>🎉 С Днём Рождения! 🎉</h1>
+
+<div class="age">
+💖 Висола, поздравляем с 21-летием!
+</div>
+
+<div class="message">
+
+Пусть каждый день приносит тебе счастье, улыбки и вдохновение. 💐<br><br>
+
+Желаем крепкого здоровья, семейного тепла, любви, исполнения всех мечт и огромного счастья. ❤️<br><br>
+
+Пусть рядом всегда будет твой любимый муж <b>Воир</b>, а впереди вашу семью ждут только самые светлые и радостные события. 👶💍<br><br>
+
+Пусть учёба в <b>TEAM</b> приносит новые знания, возможности и успехи. 📚✨<br><br>
+
+</div>
+
+<button onclick="showMessage()">
+🎁 Открыть подарок
+</button>
+
+<div id="extra">
+
+<h2>🎊 Сюрприз! 🎊</h2>
+
+<p style="margin-top:20px;line-height:1.8;">
+Пусть каждый новый день будет ярче предыдущего! ☀️<br><br>
+
+Пусть в доме всегда царят любовь, уют, достаток и смех. 🏡❤️<br><br>
+
+Ты замечательная сестра, и вся наша семья очень тебя любит! 💖<br><br>
+
+С Днём Рождения! 🎂🎉
+</p>
+
+</div>
+
+<footer>
+С любовью ❤️ от твоего брата
+</footer>
+
+</div>
+
+<script>
+
+function showMessage(){
+
+document.getElementById("extra").style.display="block";
+
+for(let i=0;i<120;i++){
+
+let e=document.createElement("div");
+
+e.innerHTML=Math.random()>0.5?"🎉":"✨";
+
+e.style.position="fixed";
+e.style.left=Math.random()*100+"vw";
+e.style.top="-20px";
+e.style.fontSize=(15+Math.random()*25)+"px";
+e.style.transition="4s linear";
+
+document.body.appendChild(e);
+
+setTimeout(()=>{
+e.style.transform=`translateY(${window.innerHeight+100}px) rotate(${Math.random()*720}deg)`;
+},10);
+
+setTimeout(()=>{
+e.remove();
+},4200);
+
+}
+
+}
+
+const colors=["#ff4d6d","#ffd93d","#6bcB77","#4d96ff","#ff7bcb"];
+
+for(let i=0;i<25;i++){
+
+let b=document.createElement("div");
+
+b.className="balloon";
+
+b.style.left=Math.random()*100+"vw";
+
+b.style.animationDuration=(8+Math.random()*8)+"s";
+
+b.style.animationDelay=Math.random()*8+"s";
+
+b.style.background=colors[Math.floor(Math.random()*colors.length)];
+
+document.body.appendChild(b);
+
+}
+
+for(let i=0;i<80;i++){
+
+let s=document.createElement("div");
+
+s.className="star";
+
+s.innerHTML="✦";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.top=Math.random()*100+"vh";
+
+s.style.fontSize=(8+Math.random()*20)+"px";
+
+s.style.animationDelay=Math.random()*3+"s";
+
+document.body.appendChild(s);
+
+}
+
+</script>
+
+</body>
+</html>
