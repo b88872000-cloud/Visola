@@ -4,115 +4,62 @@
     <meta charset="UTF-8">
     <title>С Днем Рождения, Висола!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap');
+        body { margin: 0; background: #0f0c29; color: #fff; font-family: 'Segoe UI', sans-serif; overflow: hidden; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        
+        /* Сетка шариков */
+        .balloon { position: absolute; width: 50px; height: 60px; background: #ff9efc; border-radius: 50%; animation: float 6s infinite ease-in-out; opacity: 0.7; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-50px); } }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Comfortaa', cursive;
-            background: radial-gradient(circle at center, #2d1b3e, #1a0b26);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #fff;
-            text-align: center;
-            overflow: hidden;
-        }
+        .card { z-index: 10; background: rgba(255,255,255,0.1); padding: 40px; border-radius: 30px; backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2); text-align: center; max-width: 500px; box-shadow: 0 0 50px rgba(0,0,0,0.5); }
+        h1 { margin: 0; color: #ffeb3b; text-shadow: 0 0 10px #ff9800; }
 
-        .container {
-            width: 90%;
-            max-width: 600px;
-            padding: 40px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-        }
-
-        h1 { font-size: 2.5rem; margin-bottom: 10px; color: #ff9efc; }
-        .wish-text { font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; color: #e0e0e0; }
-
-        /* Свеча */
-        .candle-box { margin: 40px auto; position: relative; width: 60px; height: 120px; cursor: pointer; }
-        .wick { width: 4px; height: 15px; background: #333; margin: 0 auto; }
-        .flame { 
-            width: 20px; height: 35px; background: orange; border-radius: 50% 50% 20% 20%;
-            margin: -5px auto 0; box-shadow: 0 0 20px #ffcc00; animation: burn 0.5s infinite;
-        }
-        @keyframes burn { 0%, 100% {transform: scale(1);} 50% {transform: scale(1.1);} }
-        .hidden { display: none; }
-
-        button {
-            padding: 15px 30px; font-size: 1rem; border: none; border-radius: 50px;
-            background: linear-gradient(45deg, #ff9efc, #8559da); color: white;
-            cursor: pointer; transition: transform 0.3s;
-        }
-        button:hover { transform: scale(1.05); }
-
-        canvas { position: absolute; top: 0; left: 0; pointer-events: none; }
+        /* Торт со свечами */
+        .cake { margin: 30px auto; display: flex; justify-content: center; gap: 10px; height: 100px; align-items: flex-end; }
+        .candle { width: 15px; height: 50px; background: #8bc34a; position: relative; cursor: pointer; border-radius: 5px; }
+        .flame { width: 10px; height: 15px; background: #ff5722; border-radius: 50% 50% 20% 20%; position: absolute; top: -15px; left: 2.5px; animation: flicker 0.2s infinite; }
+        @keyframes flicker { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .extinguished { display: none; }
     </style>
 </head>
 <body>
 
-    <canvas id="canvas"></canvas>
+    <div id="balloons"></div>
 
-    <div class="container" id="content">
-        <h1>Висола, с 21-летием!</h1>
-        <p class="wish-text" id="main-text">
-            С днем рождения, дорогая! 21 год — это начало самого прекрасного времени.<br><br>
-            Пусть твоя учеба в <b>TEAM University</b> дается легко и открывает перед тобой двери в будущее. Пусть ваша семья с <b>Воиром</b> крепнет с каждым днем, а дом будет наполнен уютом.<br><br>
-            Самое главное пожелание — здоровья тебе и вашему маленькому чуду. Пусть всё задуманное сбывается, а каждый день приносит только радостные новости!
-        </p>
-
-        <div class="candle-box" onclick="blow()">
-            <div class="wick"></div>
-            <div class="flame" id="flame"></div>
+    <div class="card">
+        <h1 id="title">С Днем Рождения, Висола!</h1>
+        <p id="wish">Тебе 21! В этот особенный день желаем тебе и малышу здоровья, а вашей семье с Воиром — бесконечной любви. Ты — гордость TEAM University!</p>
+        
+        <div class="cake" id="cake">
+            <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+            <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
+            <div class="candle" onclick="blow(this)"><div class="flame"></div></div>
         </div>
-        <p id="hint">Нажми на свечу, чтобы задуть её</p>
+        <p id="hint">Задуй все 3 свечи!</p>
     </div>
 
     <script>
-        function blow() {
-            const flame = document.getElementById('flame');
-            const text = document.getElementById('main-text');
-            const hint = document.getElementById('hint');
-            
-            flame.classList.add('hidden');
-            hint.innerText = "Желание загадано! Счастья вам!";
-            text.innerHTML = "<b>Висола, ты удивительная!</b><br>Спасибо, что делаешь этот мир светлее. Пусть этот год принесет тебе много сил, здоровья и бесконечной любви. Мы все очень тобой гордимся — и ты, и Воир, и ваш малыш — вы создаете прекрасную историю. Сияй, улыбайся и будь самой счастливой!";
-            
-            // Запуск салюта
-            createFireworks();
+        // Создаем летающие шарики
+        for(let i=0; i<10; i++) {
+            let b = document.createElement('div');
+            b.className = 'balloon';
+            b.style.left = Math.random()*100 + '%';
+            b.style.top = Math.random()*80 + '%';
+            b.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
+            b.style.animationDelay = i + 's';
+            document.body.appendChild(b);
         }
 
-        function createFireworks() {
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            
-            let particles = [];
-            for(let i=0; i<200; i++) {
-                particles.push({
-                    x: canvas.width/2, y: canvas.height/2,
-                    vx: (Math.random()-0.5)*15, vy: (Math.random()-0.5)*15,
-                    color: `hsl(${Math.random()*360}, 70%, 60%)`, alpha: 1
-                });
+        let blownCount = 0;
+        function blow(el) {
+            if(!el.querySelector('.flame').classList.contains('extinguished')) {
+                el.querySelector('.flame').classList.add('extinguished');
+                blownCount++;
+                if(blownCount === 3) {
+                    document.getElementById('title').innerText = "Ура! С Днём Рождения!";
+                    document.getElementById('wish').innerText = "Пусть все желания сбудутся! Счастья тебе, Висола, Воиру и вашему маленькому чуду!";
+                    document.getElementById('hint').innerText = "🎉 Праздник начинается!";
+                }
             }
-
-            function render() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => {
-                    ctx.fillStyle = p.color;
-                    ctx.globalAlpha = p.alpha;
-                    ctx.beginPath(); ctx.arc(p.x, p.y, 3, 0, Math.PI*2); ctx.fill();
-                    p.x += p.vx; p.y += p.vy; p.alpha -= 0.01;
-                });
-                if(particles[0].alpha > 0) requestAnimationFrame(render);
-            }
-            render();
         }
     </script>
 </body>
