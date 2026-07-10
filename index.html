@@ -1,86 +1,361 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>С Днем Рождения, Висола!</title>
-    <style>
-        body { margin: 0; background: #1a052e; color: white; font-family: 'Arial', sans-serif; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        
-        /* Анимация летящих шариков */
-        .balloon { position: absolute; bottom: -100px; width: 40px; height: 50px; border-radius: 50%; opacity: 0.8; animation: rise 10s infinite linear; }
-        @keyframes rise { 100% { transform: translateY(-120vh); } }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .container { position: relative; z-index: 2; text-align: center; background: rgba(255, 255, 255, 0.1); padding: 50px; border-radius: 40px; backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.2); }
-        h1 { font-size: 3rem; margin-bottom: 20px; color: #ffeb3b; text-shadow: 0 0 20px #ff9800; }
-        p { font-size: 1.4rem; max-width: 700px; line-height: 1.6; color: #f0f0f0; }
+<title>С Днём Рождения, Висола ❤️</title>
 
-        /* Торт */
-        .cake { display: flex; justify-content: center; gap: 20px; margin: 40px 0; }
-        .candle-base { width: 20px; height: 60px; background: #ff7675; border-radius: 5px; position: relative; cursor: pointer; transition: 0.3s; }
-        .flame { width: 12px; height: 20px; background: #ffdd00; border-radius: 50% 50% 20% 20%; position: absolute; top: -25px; left: 4px; box-shadow: 0 0 15px #ff9800; animation: blink 0.3s infinite alternate; }
-        @keyframes blink { from { opacity: 1; } to { opacity: 0.7; } }
-        .off { display: none; }
+<style>
 
-        #confetti { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
-    </style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",Arial,sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:
+linear-gradient(135deg,#ffafbd,#ffc3a0,#c2e9fb);
+background-size:300% 300%;
+animation:bg 12s infinite alternate;
+overflow:auto;
+padding:20px;
+}
+
+
+@keyframes bg{
+from{
+background-position:left;
+}
+to{
+background-position:right;
+}
+}
+
+
+.card{
+
+max-width:850px;
+padding:55px 45px;
+
+background:rgba(255,255,255,.35);
+backdrop-filter:blur(20px);
+
+border-radius:35px;
+
+box-shadow:
+0 30px 80px rgba(0,0,0,.25);
+
+text-align:center;
+
+animation:appear 1.5s;
+
+}
+
+
+@keyframes appear{
+
+from{
+opacity:0;
+transform:translateY(50px);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+
+}
+
+
+
+h1{
+
+font-size:55px;
+
+color:#fff;
+
+text-shadow:
+0 0 20px #ff4f81;
+
+margin-bottom:15px;
+
+}
+
+
+.name{
+
+font-size:32px;
+
+color:#fff0b3;
+
+font-weight:bold;
+
+margin-bottom:30px;
+
+}
+
+
+
+.heart{
+
+font-size:60px;
+
+animation:pulse 1.5s infinite;
+
+}
+
+
+@keyframes pulse{
+
+50%{
+transform:scale(1.2);
+}
+
+}
+
+
+
+.text{
+
+font-size:21px;
+
+line-height:1.9;
+
+color:white;
+
+text-shadow:0 2px 5px rgba(0,0,0,.2);
+
+}
+
+
+
+.box{
+
+margin-top:35px;
+
+padding:25px;
+
+background:rgba(255,255,255,.25);
+
+border-radius:25px;
+
+border:1px solid rgba(255,255,255,.5);
+
+}
+
+
+
+.box h2{
+
+color:#fff5c3;
+
+margin-bottom:15px;
+
+font-size:30px;
+
+}
+
+
+
+.wish{
+
+font-size:20px;
+
+line-height:1.8;
+
+color:white;
+
+}
+
+
+
+footer{
+
+margin-top:35px;
+
+color:white;
+
+font-size:18px;
+
+opacity:.9;
+
+}
+
+
+.sparkle{
+
+position:fixed;
+
+font-size:20px;
+
+color:white;
+
+animation:float 5s infinite linear;
+
+}
+
+
+@keyframes float{
+
+from{
+
+transform:translateY(100vh);
+
+opacity:0;
+
+}
+
+20%{
+opacity:1;
+}
+
+to{
+
+transform:translateY(-20vh);
+
+opacity:0;
+
+}
+
+}
+
+
+
+</style>
+
 </head>
+
+
 <body>
 
-    <div id="balloon-container"></div>
-    <canvas id="confetti"></canvas>
 
-    <div class="container">
-        <h1>С Днем Рождения, Висола!</h1>
-        <p id="message">
-            Висола, тебе сегодня 21! Это невероятный возраст. Ты сейчас на таком прекрасном этапе пути: учеба в TEAM University, поддержка любимого мужа Воира и самое главное — ожидание малыша. 
-            Пусть твой дом всегда будет полон смеха, пусть каждый экзамен будет сдан на отлично, а здоровье будет крепким как сталь. Будь самой счастливой, ведь ты этого достойна!
-        </p>
+<div class="card">
 
-        <div class="cake">
-            <div class="candle-base" onclick="blow(this)"><div class="flame"></div></div>
-            <div class="candle-base" onclick="blow(this)"><div class="flame"></div></div>
-            <div class="candle-base" onclick="blow(this)"><div class="flame"></div></div>
-        </div>
-        <p>Нажми на каждую свечу, чтобы загадать желание!</p>
-    </div>
 
-    <script>
-        // Шарики
-        for(let i=0; i<15; i++) {
-            let b = document.createElement('div');
-            b.className = 'balloon';
-            b.style.left = Math.random()*90 + 'vw';
-            b.style.backgroundColor = `hsl(${Math.random()*360}, 70%, 60%)`;
-            b.style.animationDelay = (i * 0.7) + 's';
-            document.getElementById('balloon-container').appendChild(b);
-        }
+<div class="heart">
+❤️
+</div>
 
-        // Задувание свечей
-        let count = 0;
-        function blow(el) {
-            if(el.querySelector('.flame')) {
-                el.querySelector('.flame').remove();
-                count++;
-                if(count === 3) {
-                    document.getElementById('message').innerHTML = "<b>Ура! Все свечи погашены!</b><br>Пусть твоё желание, загаданное в 21 год, обязательно исполнится самым чудесным образом. Мы тебя очень любим! Счастья тебе, Воиру и вашему малышу!";
-                    startConfetti();
-                }
-            }
-        }
 
-        // Салют
-        function startConfetti() {
-            const canvas = document.getElementById('confetti');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            let particles = Array.from({length: 200}, () => ({x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*5, color: `hsl(${Math.random()*360}, 100%, 50%)`}));
-            function draw() {
-                ctx.clearRect(0,0,canvas.width,canvas.height);
-                particles.forEach(p => { ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fill(); p.y += 2; if(p.y > canvas.height) p.y = 0; });
-                requestAnimationFrame(draw);
-            }
-            draw();
-        }
-    </script>
+<h1>
+С Днём Рождения!
+</h1>
+
+
+<div class="name">
+Дорогая Висола, тебе 21 год 🎂
+</div>
+
+
+
+<div class="text">
+
+Сегодня особенный день — день, когда появился такой прекрасный человек, как ты.
+
+<br><br>
+
+Пусть твоя жизнь будет наполнена счастьем, любовью, спокойствием и красивыми моментами.
+
+<br><br>
+
+Желаю тебе всегда оставаться такой же доброй, улыбчивой и замечательной.
+
+<br><br>
+
+Пусть каждый новый день приносит тебе радость,
+приятные сюрпризы и новые возможности.
+
+</div>
+
+
+
+<div class="box">
+
+<h2>
+✨ Мои пожелания тебе ✨
+</h2>
+
+
+<div class="wish">
+
+🌸 Желаю крепкого здоровья и огромного внутреннего счастья.
+
+<br><br>
+
+💖 Пусть в твоём сердце всегда будет любовь и гармония.
+
+<br><br>
+
+🏡 Пусть дома всегда царят тепло, уют, понимание и радость.
+
+<br><br>
+
+💍 Пусть ваша семья с Воиром становится только крепче,
+а каждый день приносит новые счастливые воспоминания.
+
+<br><br>
+
+👶 Пусть впереди вас ждут самые добрые и светлые моменты.
+
+<br><br>
+
+🎓 Желаю успехов в учёбе, уверенности в себе и достижения всех целей.
+
+<br><br>
+
+⭐ Пусть все твои мечты постепенно становятся реальностью.
+
+<br><br>
+
+🌷 Пусть судьба дарит тебе много счастливых дней,
+добрых людей рядом и бесконечные причины улыбаться.
+
+</div>
+
+</div>
+
+
+
+<footer>
+
+С любовью ❤️ от твоего брата
+
+</footer>
+
+
+</div>
+
+
+
+<script>
+
+for(let i=0;i<25;i++){
+
+let s=document.createElement("div");
+
+s.className="sparkle";
+
+s.innerHTML="✨";
+
+s.style.left=Math.random()*100+"vw";
+
+s.style.animationDelay=Math.random()*5+"s";
+
+s.style.fontSize=15+Math.random()*25+"px";
+
+document.body.appendChild(s);
+
+}
+
+</script>
+
+
 </body>
 </html>
